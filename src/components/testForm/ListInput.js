@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+
 import Icon from '@material-ui/core/Icon';
 
 
@@ -66,7 +65,7 @@ export class ListInput extends React.Component {
         const {classes} = this.props;
         return (
 
-            <Paper className={classes.paper}>
+            <div>
                 <TextField
                     id="name"
                     label="test attribute"
@@ -78,7 +77,7 @@ export class ListInput extends React.Component {
                 <Icon className={classes.icon} color="action" onClick={this.deleteRow}>
                     remove_circle
                 </Icon>
-            </Paper>
+            </div>
 
         );
     }

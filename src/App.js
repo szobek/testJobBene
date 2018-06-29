@@ -69,6 +69,11 @@ class App extends Component {
         }
     }
 
+    /**
+     * search object by id from datas
+     * @param id
+     * @returns {null}
+     */
     getObjectById(id) {
         let b = this.state.datas.map((n, i) => {
             return (n.id === id) ? i : null
@@ -77,6 +82,10 @@ class App extends Component {
 
     }
 
+    /**
+     * remove an element from datas array
+     * @param data
+     */
     deleteRow(data) {
         if (this.state.datas.length <= 1) {
             alert('Nem lehet törölni', this.state.datas);
@@ -98,10 +107,18 @@ class App extends Component {
 
     }
 
+    /**
+     * check data in child from parent
+     * @returns {Array}
+     */
     checkRoot() {
         return this.state.datas;
     }
 
+    /**
+     * write inputs to html from datas array
+     * @returns {any[]}
+     */
     loopInput() {
         this.addEmptyInput();
         return this.state.datas.map((data, index) => {
@@ -110,15 +127,21 @@ class App extends Component {
         })
     }
 
+    /**
+     * create empty input in datas
+     */
     addEmptyInput() {
         if (this.state.datas[this.state.datas.length - 1].text.length > 0) {
             this.state.datas.push({text: '', id: this.uid++})
         }
     }
 
+    /**
+     *  enable show list, if datas array length > 1
+     */
     showList() {
         if(this.state.datas.length > 1) {
-            clearInterval(this.timer)
+            clearInterval(this.timer);
             this.setState({show: true});
             this.timer = setTimeout(() => {
                 this.hideList()
@@ -127,10 +150,17 @@ class App extends Component {
 
     }
 
+    /**
+     * hide list
+     */
     hideList() {
         this.setState({show: false});
     }
 
+    /**
+     * list saved data w/o last empty element
+     * @returns {*}
+     */
     showData() {
         if(this.state.show) {
             return this.state.datas.map( (data, index) => {
@@ -155,7 +185,6 @@ class App extends Component {
                         <MaterialBar/>
                     </Grid>
 
-
                     <Grid item xs={3} sm={3} lg={3} xl={3}>
 
                     </Grid>
@@ -173,13 +202,10 @@ class App extends Component {
 
                         </Paper>
                         <Paper >
-
                             <ul>
                                 {this.showData()}
                             </ul>
-
                         </Paper>
-
                     </Grid>
                 </Grid>
 
@@ -194,5 +220,3 @@ App.propTypes = {
 };
 
 export default withStyles(styles)(App);
-
-// export default App;

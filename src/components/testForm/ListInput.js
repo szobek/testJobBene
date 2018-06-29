@@ -57,9 +57,6 @@ export class ListInput extends React.Component {
         this.props.deleteRow(this.state.id);
     }
 
-    componentWillUnmount() {
-    }
-
     render() {
 
         const {classes} = this.props;

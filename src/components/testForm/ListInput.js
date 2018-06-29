@@ -65,11 +65,11 @@ export class ListInput extends React.Component {
         const {classes} = this.props;
         return (
 
-            <div>
+            <div className={classes.root}>
                 <TextField
-                    id="name"
                     label="test attribute"
                     value={this.state.text}
+                    className={classes.textField}
                     onChange={this.handleChange}
                     margin="normal"
                     autoComplete={'off'}

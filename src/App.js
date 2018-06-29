@@ -11,12 +11,22 @@ import MaterialBar from './components/testForm/MaterialBar';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
-const pStyle = {
-    textAlign: 'center',
-    margin: '15px',
-    padding: '15px'
-};
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    gridContainer: {
+
+    }
+});
 
 class App extends Component {
 
@@ -38,6 +48,8 @@ class App extends Component {
 
         this.uid = 1;
         this.timer = null;
+
+
     }
 
     checkLast() {
@@ -53,10 +65,7 @@ class App extends Component {
             Object.assign(temp, this.state.datas);
             temp[index].text = childData.text;
 
-            this.setState({datas: temp}, () => {
-
-                console.log('a state frissítés után', this.state, 'a temp', temp)
-            });
+            this.setState({datas: temp});
         }
     }
 
@@ -136,14 +145,24 @@ class App extends Component {
     }
 
     render() {
+
+        const { classes } = this.props;
         return (
-            <div className={{flexGrow: 1}}>
+            <div className={classes.root}>
 
-                <MaterialBar/>
-                <Grid container >
-                    <Grid item xs={12} >
+                <Grid container spacing={32}>
+                    <Grid item xs={12} sm={12} lg={12} xl={12}>
+                        <MaterialBar/>
+                    </Grid>
 
-                        <Paper >
+
+                    <Grid item xs={3} sm={3} lg={3} xl={3}>
+
+                    </Grid>
+
+                    <Grid item xs={6} sm={6}>
+
+                        <Paper className={classes.paper} >
                             {this.loopInput()}
                             <Button color="primary" onClick={this.showList}>
                                 Save
@@ -174,4 +193,6 @@ App.propTypes = {
     show: PropTypes.bool,
 };
 
-export default App;
+export default withStyles(styles)(App);
+
+// export default App;
